@@ -1,0 +1,220 @@
+/* ============================================================
+   نظام الألوان: هوية "لوحة تحكم المخزن" — ستيل صناعي + كهرمان
+   ============================================================ */
+:root {
+    --ink: #17212B;
+    --steel: #2C6178;
+    --steel-2: #3E7C93;
+    --steel-tint: #E9F0F3;
+    --amber: #CE7C1F;
+    --amber-tint: #FBEEDC;
+    --paper: #F1F3F5;
+    --surface: #FFFFFF;
+    --surface-2: #F6F8F9;
+    --line: #DEE3E7;
+    --text: #1D2731;
+    --text-muted: #5C6B77;
+    --radius: 14px;
+    --shadow: 0 2px 10px rgba(23, 33, 43, 0.06), 0 1px 2px rgba(23, 33, 43, 0.05);
+    --font-ui: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-code: 'JetBrains Mono', 'Consolas', monospace;
+}
+[data-theme="dark"] {
+    --ink: #0C1117;
+    --steel: #5B93B0;
+    --steel-2: #7BAFC8;
+    --steel-tint: #1B2A32;
+    --amber: #E7A34C;
+    --amber-tint: #2C230F;
+    --paper: #0D1218;
+    --surface: #171F27;
+    --surface-2: #1D2731;
+    --line: #2A3540;
+    --text: #E7EAEE;
+    --text-muted: #97A3AD;
+    --shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+
+* { transition: background-color .2s ease, border-color .2s ease, color .2s ease; }
+
+body {
+    background-color: var(--paper);
+    color: var(--text);
+    font-family: var(--font-ui);
+}
+
+/* ---------- الهيدر ---------- */
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+.app-header .brand { display: flex; align-items: center; gap: 14px; }
+.app-header .brand-mark {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: linear-gradient(155deg, var(--steel), var(--ink));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; flex-shrink: 0;
+    box-shadow: var(--shadow);
+}
+.app-header h2 { font-weight: 800; margin: 0; color: var(--text); font-size: 1.5rem; }
+.app-header p { color: var(--text-muted); margin: 2px 0 0; font-size: .9rem; }
+
+/* مفتاح الوضع الليلي */
+.theme-toggle {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 999px; padding: 6px 14px; cursor: pointer;
+    box-shadow: var(--shadow); font-size: .85rem; font-weight: 500;
+    color: var(--text); user-select: none;
+}
+.theme-toggle:hover { border-color: var(--steel); }
+.theme-toggle .icon { font-size: 1rem; line-height: 1; }
+
+/* ---------- الكروت ---------- */
+.card {
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 25px;
+    color: var(--text);
+}
+.card .bg-light { background-color: var(--surface-2) !important; border-color: var(--line) !important; }
+.card.border-primary { border-color: var(--steel) !important; border-width: 1.5px; }
+
+/* عناوين وألوان النصوص المعاد تلوينها بالهوية الجديدة */
+.text-primary { color: var(--steel) !important; }
+.text-secondary { color: var(--text-muted) !important; }
+.text-danger { color: #B5482E !important; }
+.text-success { color: #2E7D5B !important; }
+.text-muted { color: var(--text-muted) !important; }
+
+/* ---------- التبويبات: عمود جانبي بأيقونات (Sidebar Navigation) ---------- */
+.app-shell {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+.sidebar-nav {
+    flex: 0 0 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 16px;
+}
+.sidebar-nav .nav-item { list-style: none; }
+.sidebar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: start;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-weight: 700;
+    font-size: .88rem;
+    line-height: 1.35;
+    color: var(--text-muted);
+    background: transparent;
+}
+.sidebar-nav .nav-link .side-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 9px;
+    background: var(--surface-2);
+}
+.sidebar-nav .nav-link:hover { color: var(--steel); background: var(--steel-tint); }
+.sidebar-nav .nav-link.active {
+    color: white !important;
+    background-color: var(--steel);
+    box-shadow: 0 2px 8px rgba(44, 97, 120, 0.35);
+}
+.sidebar-nav .nav-link.active .side-icon { background: rgba(255,255,255,.18); }
+.app-shell > .tab-content { flex: 1 1 auto; min-width: 0; }
+
+/* شريط علوي أفقي بدل العمود الجانبي على الشاشات الضيقة */
+@media (max-width: 860px) {
+    .app-shell { flex-direction: column; }
+    .sidebar-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        width: 100%;
+        position: static;
+        flex: 1 1 auto;
+    }
+    .sidebar-nav .nav-link { flex-direction: column; gap: 6px; white-space: nowrap; font-size: .74rem; text-align: center; }
+    .sidebar-nav .nav-link .side-label { white-space: normal; max-width: 90px; }
+}
+
+
+.btn-primary { background-color: var(--steel); border-color: var(--steel); }
+.btn-primary:hover { background-color: var(--steel-2); border-color: var(--steel-2); }
+.btn-outline-primary { color: var(--steel); border-color: var(--steel); }
+.btn-outline-primary:hover { background-color: var(--steel); border-color: var(--steel); }
+
+/* ---------- الجداول ---------- */
+.table-responsive { max-height: 400px; overflow-y: auto; }
+.table { color: var(--text); }
+.table > :not(caption) > * > * { background-color: var(--surface); color: var(--text); border-color: var(--line); }
+.table-striped > tbody > tr:nth-of-type(odd) > * { background-color: var(--surface-2); }
+.table-hover > tbody > tr:hover > * { background-color: var(--steel-tint); }
+.table thead.table-dark th { background-color: var(--ink); color: #fff; border-color: var(--ink); }
+.table thead.table-warning th { background-color: var(--amber-tint); color: var(--ink); border-color: var(--line); }
+.table thead.table-success th { background-color: #DCEFE4; color: var(--ink); border-color: var(--line); }
+.table thead.table-light th { background-color: var(--surface-2); color: var(--ink); border-color: var(--line); }
+[data-theme="dark"] .table thead.table-warning th { background-color: var(--amber-tint); color: var(--text); }
+[data-theme="dark"] .table thead.table-success th { background-color: #16261E; color: var(--text); }
+
+/* عنصر مُوقّع الهوية: كود المادة يظهر كـ "بطاقة رقم قطعة" — بخط مونو وحدّ كهرماني */
+#masterTable td:first-child,
+#stockPreviewTable td:first-child,
+#unmatchedItemsTable td:first-child,
+#reportTable td:first-child,
+.modal table td:first-child {
+    font-family: var(--font-code);
+    font-weight: 600;
+    letter-spacing: .3px;
+}
+#masterTable tbody td:first-child:not(:empty),
+#stockPreviewTable tbody td:first-child:not(:empty) {
+    position: relative;
+}
+
+/* ---------- التنبيهات والشارات ---------- */
+.badge-import { background-color: var(--amber); color: white; }
+.badge-local { background-color: #2E8B74; color: white; }
+.priority-high { background-color: #FBE2DD; color: #8A2E1B; font-weight: bold; }
+.priority-normal { background-color: var(--amber-tint); color: #7A5218; }
+.badge-missing { background-color: var(--text-muted); color: white; }
+[data-theme="dark"] .priority-high { background-color: #3A1E18; color: #F2AFA0; }
+[data-theme="dark"] .priority-normal { background-color: var(--amber-tint); color: #F0C784; }
+
+.alert-secondary { background-color: var(--surface-2); border-color: var(--line); color: var(--text); }
+.form-control, .form-select {
+    background-color: var(--surface); border-color: var(--line); color: var(--text);
+}
+.form-control:focus, .form-select:focus { border-color: var(--steel); box-shadow: 0 0 0 .2rem var(--steel-tint); }
+[data-theme="dark"] .form-control, [data-theme="dark"] .form-select { color: var(--text); }
+[data-theme="dark"] .form-control::placeholder { color: var(--text-muted); }
+[data-theme="dark"] .modal-content { background-color: var(--surface); color: var(--text); }
+[data-theme="dark"] .alert-warning { background-color: #2C230F; color: #F0C784; border-color: #4A3A1A; }
+[data-theme="dark"] .alert-danger { background-color: #2E1712; color: #F2AFA0; border-color: #4A2A22; }
+[data-theme="dark"] .alert-success { background-color: #142A1F; color: #A8DFC1; border-color: #234636; }
+[data-theme="dark"] .table-light, [data-theme="dark"] .table-light > * { background-color: var(--surface-2) !important; color: var(--text) !important; }
+[data-theme="dark"] .modal-header, [data-theme="dark"] .modal-footer { border-color: var(--line); }
+[data-theme="dark"] .btn-close { filter: invert(1) grayscale(100%); }
